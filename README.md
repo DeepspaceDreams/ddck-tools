@@ -10,21 +10,20 @@ Gathers day-to-day data to get a good estimate of the reach of your posts for ea
 
 ### link-tag.js
 
-Gathers all links where a given tag was put in the post or in the comments, very useful for label days, etc.
+Analyzes data exported using facebook-export to gather posts tagged with a given keyword.
+
+### run_link_tag
+
+Simple Bash script you can use to automatize the post gathering and data analyzis. Just provide a Facebook UAT in fbtoken and a group ID in groupid once and put a tag as an argument, then you're done.
 
 ## Usage
 
 You first have to export data using [facebook-export](https://www.npmjs.com/package/facebook-export) and output it in a json format using facebook-analyze (Provided with facebook-export).
 
-```bash
-facebook-export -d -g [GROUP_ID] -a [ACCESS_TOKEN]
-facebook-analyze -g [GROUP_ID] -s > data.json
-```
+### Using run_link_tag
 
-Once done, simply run ```node facebook-stats.js``` to get your daily stats.
+Put your Facebook User Access Token in ```fbtoken``` and the Facebook group ID (You can list them using ```facebook-export```) in groupid, then simply run ```run_link_tag [TAG]```.
 
-To use link-tag you must first specify the tag you're looking for into link-tag.js then simply run ```node link-tag.js```.
+### Using link-tag.js
 
-## Notes
-
-I'm open to any contribution, I'm far from being a JS guru.
+You must export your group's data manually in a file then run ```node link-tag.js [DATA_PATH] [TAG]```.
