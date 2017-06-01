@@ -16,7 +16,7 @@ if [ -z "$FBTOKEN" ] || [ -z "$GROUPID" ]; then
 	echo "You can get a Facebook User Access Token here : https://developers.facebook.com/tools/explorer"
 	echo "Make sure it has permissions on user managed groups."
 	
-	exit
+	exit -1
 fi
 
 if [ -z "$TAG" ]; then
@@ -24,7 +24,7 @@ if [ -z "$TAG" ]; then
 	echo "Usage : $0 [TAG]"
 	echo "Downloading all your group's data might take a minute, be patient !"
 	
-	exit -1
+	exit -2
 fi
 
 # Stuff being done
@@ -37,7 +37,7 @@ if [ $? != 0 ]; then
 	echo "https://developers.facebook.com/tools/explorer"
 	echo "Also make sure the group ID is valid."
 	
-	exit -2
+	exit -3
 fi
 
 facebook-analyze -g ${GROUPID} -s > data.json
@@ -46,7 +46,7 @@ if [ $? != 0 ]; then
 	echo "Something went wrong while trying to export your posts in a file,"
 	echo "maybe something went wrong while trying to dump them."
 
-	exit -3
+	exit -4
 fi
 
 node link-parser data.json $1
