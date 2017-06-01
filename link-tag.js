@@ -1,15 +1,20 @@
 const fs = require('fs');
 
-const rawJson = fs.readFileSync('data.json');
+//	Checking for args being filled
+if(process.argv.length != 4){
+	console.log("Usage : node link-tag.js [DATA_PATH] [TAG]");
+	return;
+}
+
+//	Retreiving args
+const datapath = process.argv[2];
+const tag = process.argv[3];
+
+//	Reading files
+const rawJson = fs.readFileSync(datapath);
 const parsedJson = JSON.parse(rawJson);
 
-//	Can't get it to work but very powerful so I keep it safe...
-const ytRegex = "http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?";
-
-//	Put your tag here
-const tag = "LD5SEM";
-
-//	Getting it all !
+//	Work
 parsedJson.filter(post => post.link && (post.message && post.message.search(tag) != -1) ||
 	post.comments && post.comments.data.find(dat => dat.message.search(tag) != -1))
 .forEach(post => console.log(post.link));
