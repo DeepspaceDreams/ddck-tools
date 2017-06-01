@@ -1,8 +1,11 @@
+#!/usr/bin/env node
+
 const fs = require('fs');
 
 //	Checking for args being filled
 if(process.argv.length != 4){
-	console.log("Usage : node link-tag.js [DATA_PATH] [TAG]");
+	console.log("link-parser : Parses links that got tagged with a given string in your Facebook Group's posts.");
+	console.log("Usage : link-parser [DATA_PATH] [TAG]");
 	return;
 }
 

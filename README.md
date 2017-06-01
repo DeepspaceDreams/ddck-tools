@@ -12,22 +12,23 @@ Gathers day-to-day data to get a good estimate of the reach of your posts for ea
 
 Analyzes data exported using facebook-export to gather posts tagged with a given keyword.
 
-### run_link_tag
+### Extracting links
 
-Simple Bash script you can use to automatize the post gathering and data analyzis. Just provide a Facebook UAT in fbtoken and a group ID in groupid once and put a tag as an argument, then you're done.
+You can either use link-tag that will help you store your Facebook API token and group ID to extract links faster next time, or extract your posts manually and use link-parser to just get them from a given file.
 
-## Usage
+### Using link-tag
 
-You first have to export data using [facebook-export](https://www.npmjs.com/package/facebook-export) and output it in a json format using facebook-analyze (Provided with facebook-export).
+Put your Facebook User Access Token in ```fbtoken``` and the Facebook group ID (You can list them using ```facebook-export```) in groupid, then simply run ```link-tag [TAG]```.
 
-### Using run_link_tag
+Make sure your API key is up-to-date and avoid using it repeatedly and everything should be OK.
 
-Put your Facebook User Access Token in ```fbtoken``` and the Facebook group ID (You can list them using ```facebook-export```) in groupid, then simply run ```run_link_tag [TAG]```.
+### Using link-parser
 
-### Using link-tag.js
+You must export your group's data manually in a file then run ```link-parser [DATA_PATH] [TAG]```.
 
-You must export your group's data manually in a file then run ```node link-tag.js [DATA_PATH] [TAG]```.
+## Nota bene
 
+No error is triggered if your API key got too old, if the script runs instantly or the posts aren't fresh, just get a new one from the Graph Explorer and it should be good.
 
 ---
 
