@@ -24,7 +24,7 @@ if [ -z "$TAG" ]; then
 	echo "Usage : $0 [TAG]"
 	echo "Downloading all your group's data might take a minute, be patient !"
 	
-	exit
+	exit -1
 fi
 
 # Stuff being done
@@ -35,9 +35,18 @@ if [ $? != 0 ]; then
 	echo "Something went wrong while trying to get your posts."
 	echo "Try re-running the script using a fresh API key :"
 	echo "https://developers.facebook.com/tools/explorer"
+	echo "Also make sure the group ID is valid."
 	
-	exit
+	exit -2
 fi
 
 facebook-analyze -g ${GROUPID} -s > data.json
+
+if [ $? != 0 ]; then
+	echo "Something went wrong while trying to export your posts in a file,"
+	echo "maybe something went wrong while trying to dump them."
+
+	exit -3
+fi
+
 node link-parser data.json $1
