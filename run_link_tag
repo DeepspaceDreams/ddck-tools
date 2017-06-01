@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Retreive facebook token and group id
+
+FBTOKEN=$(cat fbtoken)
+GROUPID=$(cat groupid)
+TAG=$1
+
+# Check for empty strings
+
+if [ -z "$FBTOKEN" ] || [ -z "$GROUPID" ]; then
+	touch fbtoken
+	touch groupid
+	echo "Please fill fbtoken and groupid to run the script."
+	echo "You can get a Facebook User Access Token here : https://developers.facebook.com/tools/explorer"
+	echo "Make sure it has permissions on user managed groups."
+	exit
+fi
+
+if [ -z "$TAG" ]; then
+	echo "run_link_tag : Retreives your FB group ID in groupid, your FB access token in fbtoken then runs link-tag.js
+Usage : $0 [TAG]
+Downloading all your group's data might take a minute, be patient !"
+	exit
+fi
+
+# Stuff being done
+
+facebook-export -g ${GROUPID} -a ${FBTOKEN} -d > /dev/null
+facebook-analyze -g ${GROUPID} -s > data.json
+node link-tag.js data.json $1
