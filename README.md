@@ -32,7 +32,7 @@ You must export your group's data manually in a file then run ```link-parser [DA
 
 ## Nota bene
 
-No error is triggered if your API key got too old, if the script runs instantly or the posts aren't fresh, just get a new one from the Graph Explorer and it should be good.
+facebook-export won't always trigger an error if the key got too old or is invalid, make sure it's fresh and not too used before running the script.
 
 ---
 
