@@ -4,13 +4,17 @@ This is a set of tools we use to gather data exported using [facebook-export](ht
 
 ## Overview
 
-### facebook-stats.js
+### facebook-stats
 
 Gathers day-to-day data to get a good estimate of the reach of your posts for each day of the week.
 
-### link-tag.js
+### link-tag
 
-Analyzes data exported using facebook-export to gather posts tagged with a given keyword.
+Exports posts using facebook-export then analizes it with link-parser to gather posts tagged with a given keyword.
+
+### link-parser
+
+JS program that parses data from facebook-export but doesn't do the export automatically.
 
 ### Extracting links
 
