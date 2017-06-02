@@ -30,8 +30,13 @@ parsedJson
 	let parsedLink = youtube_parser(post.link);
 	if(!parsedLink) parsedLink = post.link;
 	
-	if(linklist.find(link => link == parsedLink))
-		console.log("http://facebook.com/" + post.id);
+	foundElmt = linklist.find(elmt => elmt.link == parsedLink);
 
-	linklist.push(parsedLink);
+	if(foundElmt){
+		console.log("Original\t: http://facebook.com/" + foundElmt.id +
+			"\nRepost\t\t: http://facebook.com/" + post.id + '\n');
+	}
+	else {
+		linklist.push({id : post.id, link : parsedLink});
+	}
 })

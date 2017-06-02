@@ -1,6 +1,6 @@
 # DDCK-tools
 
-This is a set of tools we use to gather data exported using [facebook-export](https://www.npmjs.com/package/facebook-export). Feel free to use it for your own social digging group.
+This is a set of tools we use to gather data exported using [facebook-export](https://www.npmjs.com/package/facebook-export). Feel free to use it for your own social digging group or whatever.
 
 ## Overview
 
@@ -15,6 +15,10 @@ Exports posts using facebook-export then analizes it with link-parser to gather 
 ### link-parser
 
 JS program that parses data from facebook-export but doesn't do the export automatically.
+
+### repost-detector
+
+Looks for links that have been posted twice. YouTube links are parsed to get the specific ID to get a smarter matching, however other links (SoundCloud, BandCamp, etc.) won't benefit the same degree of accuracy.
 
 ### Extracting links
 
