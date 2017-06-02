@@ -2,7 +2,16 @@
 
 const fs = require('fs');
 
-const rawJson = fs.readFileSync('data.json');
+if(process.argv.length != 3){
+	console.log("facebook-stats : Calculates stats about your group.");
+	console.log("Usage : facebook-stats [DATA_PATH]");
+	return;
+}
+
+//	Retreiving args
+const datapath = process.argv[2];
+
+const rawJson = fs.readFileSync(datapath);
 const parsedJson = JSON.parse(rawJson);
 
 var dtCnt = new Array();
