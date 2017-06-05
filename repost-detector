@@ -32,10 +32,8 @@ parsedJson
 	
 	let foundElmt = linklist.find(elmt => elmt.link == parsedLink);
 
-	if(foundElmt){
+	if(foundElmt)
 		console.log("Original\t: http://facebook.com/" + foundElmt.id +
 		"\nRepost\t\t: http://facebook.com/" + post.id + '\n');
-	}
-
 	else linklist.push({id : post.id, link : parsedLink, user : post.from});
 })
