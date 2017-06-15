@@ -18,21 +18,20 @@ if(process.argv.length != 4){
 
 //	Retreiving args
 const datapath = process.argv[2];
-const tag = process.argv[3];
+const tag = process.argv[3].toLowerCase();
 
 //	Reading files
 const rawJson = fs.readFileSync(datapath);
 const parsedJson = JSON.parse(rawJson);
 
-//parsedJson
-//.filter(post => post.comments)
-//.forEach(post => console.log(post.comments.data[0]));
-
 //	Work
-parsedJson.filter(post => post.link && (post.message && post.message.search(tag) != -1) ||
+parsedJson
+.filter(post => post.link && (post.message && post.message.toLowerCase().search(tag) != -1) ||
 	post.comments && post.comments.data.find(dat => dat.message.search(tag) != -1))
 .forEach(post => {
+	//	Retreive link from post
 	console.log(post.link);
+
 	//	Also retreive YT links in comments
 	if(post.comments)
 		post.comments.data.forEach(comm => {
@@ -40,5 +39,4 @@ parsedJson.filter(post => post.link && (post.message && post.message.search(tag)
 			if(lnk)
 				console.log("https://www.youtube.com/watch?v=" + lnk);
 		});
-
 });

@@ -4,6 +4,8 @@ This is a set of tools we use to gather data exported using [facebook-export](ht
 
 ## Overview
 
+The tools have been re-designed with the end user in mind
+
 ### facebook-stats
 
 Gathers day-to-day data to get a good estimate of the reach of your posts for each day of the week.

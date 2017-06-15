@@ -4,7 +4,7 @@
 
 FBTOKEN=$(cat fbtoken)
 GROUPID=$(cat groupid)
-TAG=$1
+DATA_PATH=$1
 
 # Check for empty strings
 
@@ -19,9 +19,9 @@ if [ -z "$FBTOKEN" ] || [ -z "$GROUPID" ]; then
 	exit -1
 fi
 
-if [ -z "$TAG" ]; then
-	echo "run_link_tag : Retreives your FB group ID in groupid, your FB access token in fbtoken then runs link-tag.js"
-	echo "Usage : $0 [TAG]"
+if [ -z "$DATA_PATH" ]; then
+	echo "run_link_tag : Retreives your Facebook data using your token and group ID stored in fbtoken and groupid."
+	echo "Usage : $0 [PATH]"
 	echo "Downloading all your group's data might take a minute, be patient !"
 	
 	exit -2
@@ -29,7 +29,7 @@ fi
 
 # Stuff being done
 
-facebook-export -g ${GROUPID} -a ${FBTOKEN} -d &> /dev/null
+facebook-export -g ${GROUPID} -a ${FBTOKEN} -d #&> /dev/null
 
 if [ $? != 0 ]; then
 	echo "Something went wrong while trying to get your posts."
@@ -40,7 +40,7 @@ if [ $? != 0 ]; then
 	exit -3
 fi
 
-facebook-analyze -g ${GROUPID} -s > data.json
+facebook-analyze -g ${GROUPID} -s > $DATA_PATH
 
 if [ $? != 0 ]; then
 	echo "Something went wrong while trying to export your posts in a file,"
@@ -49,4 +49,4 @@ if [ $? != 0 ]; then
 	exit -4
 fi
 
-node link-parser data.json $1
+echo "Data collected and stored at $DATA_PATH"
