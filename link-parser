@@ -27,7 +27,7 @@ const parsedJson = JSON.parse(rawJson);
 //	Work
 parsedJson
 .filter(post => post.link && (post.message && post.message.toLowerCase().search(tag) != -1) ||
-	post.comments && post.comments.data.find(dat => dat.message.search(tag) != -1))
+	post.comments && post.comments.data.find(dat => dat.message.toLowerCase().search(tag) != -1))
 .forEach(post => {
 	//	Retreive link from post
 	console.log(post.link);
